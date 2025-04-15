@@ -1,58 +1,53 @@
-
-/* Found this as a standard to create clean global reset */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-}
-
-body {
+  }
+  
+  body {
     background-color: beige;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    overflow: hidden; /*no scroll bar*/
-}
-
-/* Game screen background */
-.game-background {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+  }
+  
+  .game-background {
     width: 100vw;
     height: 100vh;
     background-image: url("src/images/caralis.png");
     background-size: cover;
     background-position: center;
     position: relative;
-}
-.game-title {
+  }
+  
+  .game-title {
     text-align: center;
     font-size: 3rem;
     margin-top: 100px;
-}
-/* style the character container */
-#main-character {
-    width: 80px;
-    height: auto;
-    margin: 0% auto;
+  }
+  
+  /* Shepherd container */
+  #main-character {
     position: absolute;
-    bottom: 25vh;
-    left: 45vw;
+    bottom: 500px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 150px;
     z-index: 10;
-}
-#main-character img {
-    width: 200%;
+  }
+  
+  #main-character img {
+    width: 100%;
     height: auto;
-    display: flex;
-}
-/* sheep left */
-.sheep {
-    width: 200px;
+  }
+  
+  /* Sheep */
+  .sheep {
+    position: absolute;
+    width: 100px;
     height: 100px;
     background-image: url("src/images/sheep-left.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    position: absolute;
   }
-
-/* drop the sheep */
-#sheep.drop {
-    top: 400px;
-}

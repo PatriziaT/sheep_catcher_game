@@ -1,61 +1,60 @@
-//Shepard
-const shepard = document.getElementById("main-character");
-const mainCharacter = {
-    positionX: 0,
-    positionX: -0,
-};
-document.addEventListener('keydown', (e) => {
-    console.log('user pressed a key');
+const shepherd = document.getElementById("main-character");
+let shepherdX = window.innerWidth / 2 - 50; // center minus half width
 
- if (e.code === 'ArrowLeft') {
-        mainCharacter.positionX--;
-        shepard.style.left = `${mainCharacter.positionX}vw`;
-    } else if (e.code === 'ArrowRight') {
-        mainCharacter.positionX++;
-        shepard.style.left = `${mainCharacter.positionX}vw`;
-    }
-  });
-  
-  // Sheeps
-  function dropSheeps() {
-    const sheep = document.createElement("div"); //creates a div from memory
-    sheep.classList.add("sheep");
-    
-    document.body.appendChild(sheep);
+// Shepherd movement (left/right arrow keys)
+document.addEventListener("keydown", (e) => {
+  if (e.code === "ArrowLeft") {
+    shepherdX -= 10;
+  } else if (e.code === "ArrowRight") {
+    shepherdX += 10;
+  }
 
-     //gets current position of both characters
+  // Keep shepherd within screen bounds
+  shepherdX = Math.max(0, Math.min(shepherdX, window.innerWidth - shepherd.offsetWidth));
+  shepherd.style.left = shepherdX + "px";
+});
+
+// Drop sheep function
+function dropSheep() {
+  const sheep = document.createElement("div");
+  sheep.classList.add("sheep");
+  document.body.appendChild(sheep);
+
+  let sheepY = -100;
+  const shepherdRect = shepherd.getBoundingClientRect();
+  const sheepWidth = 100;
+
+  // Center sheep above shepherd for test, or random:
+  sheep.style.left = Math.random() * (window.innerWidth - sheepWidth) + "px";
+  sheep.style.top = sheepY + "px";
+
+  const fall = setInterval(() => {
+    sheepY += 5;
+    sheep.style.top = sheepY + "px";
+
     const sheepRect = sheep.getBoundingClientRect();
-    const shepardRect = shepard.getBoundingClientRect();
+    const updatedShepherdRect = shepherd.getBoundingClientRect();
 
-    // isCaught = () checks logic if two rectangles overlap
-    const isCaught = !(
-        sheepRect.bottom < shepardRect.top ||
-        sheepRect.top > shepardRect.bottom ||
-        sheepRect.left < shepardRect.right ||
-        sheepRect.right > shepardRect.left
-    );
+    const isCaught =
+      sheepRect.bottom >= updatedShepherdRect.top &&
+      sheepRect.bottom <= updatedShepherdRect.top &&
+      sheepRect.left >= updatedShepherdRect.left &&
+      sheepRect.right <= updatedShepherdRect.right;
 
     if (isCaught) {
-        clearInterval(dropASheep) //stop the sheep from falling
-        sheep.remove(); //removes sheep from screen
-        console.log("Caught a sheep!");
+      clearInterval(fall);
+      sheep.remove();
+      console.log("✅ Sheep caught!");
+      return;
     }
 
-
-    sheep.style.top = "-300px"; //starts avobe the visible screen
-    sheep.style.left = Math.random() * window.innerWidth + "px"; //random sheep position, converts into px
-
-    
-    let sheepPositionY = -300;
-
-    const dropASheep = setInterval(() => {
-        sheepPositionY +=5;
-        sheep.style.top = sheepPositionY + "px";
-
-        if(sheepPositionY > window.innerHeight) {
-            clearInterval(dropASheep);
-            sheep.remove();
-        }
-    }, 30);
+    if (sheepY > window.innerHeight) {
+      clearInterval(fall);
+      sheep.remove();
+      console.log("💨 Sheep missed!");
+    }
+  }, 30);
 }
-setInterval(dropSheeps, 2000); //drops a sheep every 2 seconds
+
+// Drop a sheep every 2 seconds
+setInterval(dropSheep, 2000);
