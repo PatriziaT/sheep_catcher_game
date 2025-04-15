@@ -1,15 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sheep Catcher Game</title>
-     <!-- Link to your CSS file -->
-  <link rel="stylesheet" href="style.css" />
+    <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-    <h1>Welcome to the Sheep Catcher Game!</h1>
+
+ <!--Main game area -->
+<body class="game-background">
+        <h1 class="game-title">Welcome to the Sheep Catcher Game</h1>
+        
+        <!-- Main Character - Shepard -->
+        <div id="main-character">
+            <img src="src/images/shepard-right.png" alt="Main Character Shepard" class="shepard-right">
+        </div>
+
+         <!-- Sheep container -->
+        <div id="sheep-container">
+            <img id="sheep" src="src/images/sheep-left.png" alt="Sheep" class="sheep-drop">
+        </div>
+
+     <!-- <button onclick="dropSheep()"> Start Game</button>-->  
     <!-- Link to your JS file -->
-  <script src="script.js"></script>
+    <script src="script.js"></script>
+
 </body>
+
 </html>
