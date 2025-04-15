@@ -44,6 +44,8 @@ function dropSheep() {
     if (isCaught) {
       clearInterval(fall);
       sheep.remove();
+      score++;
+      scoreDisplay.textContent = score;
       console.log("✅ Sheep caught!");
       return;
     }
@@ -58,3 +60,7 @@ function dropSheep() {
 
 // Drop a sheep every 2 seconds
 setInterval(dropSheep, 2000);
+
+//Score Board
+let score = 0;
+const scoreDisplay = document.getElementById("score");
