@@ -29,10 +29,10 @@
   /* Shepherd container */
   #main-character {
     position: absolute;
-    bottom: 28px; /* Adjust this until his feet sit on the grass */
+    bottom: 0;              /* Sits right on the edge of the game area */
     left: 50%;
     transform: translateX(-50%);
-    width: 100px; /* Adjust size if needed */
+    width: 90px;            /* Adjust size so he’s not oversized */
     height: auto;
     z-index: 10;
   }
