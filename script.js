@@ -57,7 +57,12 @@ function dropSheep() {
       if (sheepY > window.innerHeight) {
         clearInterval(dropSheeps);
         sheep.remove();
+        missed++;
         console.log("Sheep missed!");
+
+        if(missed >= 5) {
+            playerDead(); //Call your "kill" logic
+        }
       }
     }, 30);
   }
@@ -94,4 +99,7 @@ document.addEventListener("visibilitychange", () => {
 
 // Score Board
 let score = 0;
+let missed = 0;
+
 const scoreDisplay = document.getElementById("score");
+
