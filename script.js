@@ -16,47 +16,47 @@ document.addEventListener("keydown", (e) => {
 
 // Drop sheep function
 function dropSheep() {
-  const sheep = document.createElement("div");
-  sheep.classList.add("sheep");
-  document.body.appendChild(sheep);
-
-  let sheepY = -100;
-  const shepherdRect = shepherd.getBoundingClientRect();
-  const sheepWidth = 100;
-
-  // Center sheep above shepherd for test, or random:
-  sheep.style.left = Math.random() * (window.innerWidth - sheepWidth) + "px";
-  sheep.style.top = sheepY + "px";
-
-  const fall = setInterval(() => {
-    sheepY += 5;
+    const sheep = document.createElement("div");
+    sheep.classList.add("sheep");
+    document.body.appendChild(sheep);
+  
+    let sheepY = -100;
+    const shepherdRect = shepherd.getBoundingClientRect();
+    const sheepWidth = 100;
+  
+    // Center sheep above shepherd for test, or random:
+    sheep.style.left = Math.random() * (window.innerWidth - sheepWidth) + "px";
     sheep.style.top = sheepY + "px";
-
-    const sheepRect = sheep.getBoundingClientRect();
-    const updatedShepherdRect = shepherd.getBoundingClientRect();
-
-    const isCaught =
-      sheepRect.bottom >= updatedShepherdRect.top &&
-      sheepRect.bottom <= updatedShepherdRect.top &&
-      sheepRect.left >= updatedShepherdRect.left &&
-      sheepRect.right <= updatedShepherdRect.right;
-
-    if (isCaught) {
-      clearInterval(fall);
-      sheep.remove();
-      score++;
-      scoreDisplay.textContent = score;
-      console.log("✅ Sheep caught!");
-      return;
-    }
-
-    if (sheepY > window.innerHeight) {
-      clearInterval(fall);
-      sheep.remove();
-      console.log("💨 Sheep missed!");
-    }
-  }, 30);
-}
+  
+    const dropSheeps = setInterval(() => {
+      sheepY += 5;
+      sheep.style.top = sheepY + "px";
+  
+      const sheepRect = sheep.getBoundingClientRect();
+      const updatedShepherdRect = shepherd.getBoundingClientRect();
+  
+      const isCaught =
+        sheepRect.bottom >= updatedShepherdRect.top &&
+        sheepRect.top <= updatedShepherdRect.bottom &&
+        sheepRect.left <= updatedShepherdRect.right &&
+        sheepRect.right >= updatedShepherdRect.left;
+  
+      if (isCaught) {
+        clearInterval(dropSheeps);
+        sheep.remove();
+        score++;
+        scoreDisplay.textContent = score;
+        console.log("Sheep caught!");
+        return;
+      }
+  
+      if (sheepY > window.innerHeight) {
+        clearInterval(dropSheeps);
+        sheep.remove();
+        console.log("Sheep missed!");
+      }
+    }, 30);
+  }
 
 // Drop a sheep every 2 seconds
 setInterval(dropSheep, 2000);
