@@ -2,7 +2,9 @@ const shepherd = document.getElementById("main-character");
 let shepherdX = window.innerWidth / 2 - 50; // center minus half width
 
 // Shepherd movement (left/right arrow keys)
-document.addEventListener("keydown", (e) => {
+document.addEventListener("keydown", moveShepherd);
+
+function moveShepherd(e) {
   if (e.code === "ArrowLeft") {
     shepherdX -= 10;
   } else if (e.code === "ArrowRight") {
@@ -12,7 +14,7 @@ document.addEventListener("keydown", (e) => {
   // Keep shepherd within screen bounds
   shepherdX = Math.max(0, Math.min(shepherdX, window.innerWidth - shepherd.offsetWidth));
   shepherd.style.left = shepherdX + "px";
-});
+}
 
 // Drop sheep function
 function dropSheep() {
@@ -102,4 +104,20 @@ let score = 0;
 let missed = 0;
 
 const scoreDisplay = document.getElementById("score");
+
+//Player Dead
+function playerDead() {
+    stopSheepInterval();
+    document.removeEventListener("keydown", moveShepherd);
+    shepherd.classList.add("shepherd-dead");
+
+//Show the Button play again
+const playAgainBtn = document.getElementById("play-again");
+playAgainBtn.style.display = "block";
+
+    setTimeout(() => {
+        alert("GAME OVER! You missed 4 sheeps.");
+    }, 100);
+};
+
 

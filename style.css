@@ -23,13 +23,13 @@
   .game-title {
     text-align: center;
     font-size: 3rem;
-    margin-top: 50px;
+    margin-top: 70px;
   }
   
   /* Shepherd container */
   #main-character {
     position: absolute;
-    bottom: 225px;             
+    bottom: 205px;             
     left: 50%;
     transform: translateX(-50%);
     width: 90px;
@@ -47,10 +47,13 @@
     position: absolute;
     width: 80px;
     height: 80px;
+    top: -100%;
+    left: 0;
     background-image: url("src/images/sheep-left.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+    transition: top 0.2s linear;
   }
 
   /* Score Board */
@@ -58,8 +61,29 @@
     font-size: 2rem;
     font-weight: bold;
     position: absolute;
+    top: 50px;
     left: 50px;
     color: white;
     text-shadow: 1px 1px 2px black;
     z-index: 20;
+  }
+  .shepherd-dead {
+    filter: grayscale(100%);
+    opacity: 0.6;
+  }
+  .button-play-again {
+      display: none;   /* now hidden by default / block for center only*/
+      margin: 100px auto; /* centers the button horizontally */
+      background-color: rgb(224, 115, 13);
+      border: none;
+      color: white;
+      padding: 14px 40px;
+      font-size: 40px;
+      border-radius: 8px;
+      transition-duration: 0.4s;
+    }
+  
+  .button-play-again:hover {
+    background-color: rgb(188, 132, 202);
+    color: white;
   }
