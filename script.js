@@ -1,4 +1,6 @@
-const shepherd = document.getElementById("main-character");
+//############## SHEPHERD ############## 
+
+const shepherd = document.querySelector("#main-character"); 
 let shepherdX = window.innerWidth / 2 - 50; // center minus half width
 
 // Shepherd movement (left/right arrow keys)
@@ -14,6 +16,19 @@ function moveShepherd(e) {
   // Keep shepherd within screen bounds
   shepherdX = Math.max(0, Math.min(shepherdX, window.innerWidth - shepherd.offsetWidth));
   shepherd.style.left = shepherdX + "px";
+}
+
+//############## START SHEEP INTERVAL ON LOAD  ############## 
+
+let activeSheepInterval = [];
+let sheepDropInterval = null;
+startSheepInterval();
+
+// Start dropping sheep
+function startSheepInterval() {
+  if (!sheepDropInterval) {
+    sheepDropInterval = setInterval(dropSheep, 2000);
+  }
 }
 
 // Drop sheep function
@@ -38,6 +53,8 @@ function dropSheep() {
       sheepY += 2;
       sheep.style.top = sheepY + "px";
   
+      activeSheepInterval.push(dropSheeps);
+
       const sheepRect = sheep.getBoundingClientRect();
       const updatedShepherdRect = shepherd.getBoundingClientRect();
   
@@ -69,15 +86,8 @@ function dropSheep() {
     }, 30);
   }
 
-  
-  let sheepDropInterval = null;
-
-// Start dropping sheep
-function startSheepInterval() {
-  if (!sheepDropInterval) {
-    sheepDropInterval = setInterval(dropSheep, 2000);
-  }
-}
+//############## STOP DROPPING SHEEPS  ############## 
+ 
 
 // Stop dropping sheep
 function stopSheepInterval() {
@@ -85,10 +95,9 @@ function stopSheepInterval() {
     clearInterval(sheepDropInterval);
     sheepDropInterval = null;
   }
+  activeSheepInterval.forEach(interval => clearInterval(interval));
+  activeSheepInterval = [];
 }
-
-// Start once on load
-startSheepInterval();
 
 // Pause/resume based on tab visibility
 document.addEventListener("visibilitychange", () => {
@@ -99,25 +108,61 @@ document.addEventListener("visibilitychange", () => {
   }
 });
 
+//############## SCORE ############## 
+
 // Score Board
 let score = 0;
 let missed = 0;
-
 const scoreDisplay = document.getElementById("score");
 
-//Player Dead
+//############## GAME OVER ############## 
+
+// Player Dead
 function playerDead() {
-    stopSheepInterval();
-    document.removeEventListener("keydown", moveShepherd);
-    shepherd.classList.add("shepherd-dead");
+  stopSheepInterval();
+  document.removeEventListener("keydown", moveShepherd);
+  shepherd.classList.add("shepherd-dead");
 
-//Show the Button play again
-const playAgainBtn = document.getElementById("play-again");
-playAgainBtn.style.display = "block";
+  // Remove all sheeps
+  document.querySelectorAll(".sheep").forEach(sheep => sheep.remove());
 
-    setTimeout(() => {
-        alert("GAME OVER! You missed 4 sheeps.");
-    }, 100);
-};
+  // Immediately show Play Again button (no alert)
+  document.getElementById("play-again").style.display = "block";
+}
 
+function showGameOverMessage(message, callback) {
+  const alertBox = document.createElement("div");
+  alertBox.textContent = message;
+  alertBox.className = "game-over-alert";
+  document.body.appendChild(alertBox);
 
+  setTimeout(() => {
+    alertBox.remove();
+    if (callback) callback();  // call this after alert is gone
+  }, 3000);
+}
+
+// Restart Game when clicking the button
+  document.getElementById("play-again").addEventListener("click", () => {
+  console.log("restarting....");
+
+  // Reset score and missed
+  score = 0;
+  missed = 0;
+  scoreDisplay.textContent = score;
+
+  // Remove shepherd-dead styles
+  shepherd.classList.remove("shepherd-dead");
+
+  // Hide play again button
+  document.getElementById("play-again").style.display = "none";
+
+  // Re-enable movement
+  document.addEventListener("keydown", moveShepherd);
+
+  // Remove left-over sheeps on screen
+  document.querySelectorAll(".sheep").forEach(sheep => sheep.remove());
+
+  // Start sheep dropping again
+  startSheepInterval();
+});
