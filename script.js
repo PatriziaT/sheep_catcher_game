@@ -29,7 +29,7 @@ function dropSheep() {
     sheep.style.top = sheepY + "px";
   
     const dropSheeps = setInterval(() => {
-      sheepY += 5;
+      sheepY += 3;
       sheep.style.top = sheepY + "px";
   
       const sheepRect = sheep.getBoundingClientRect();
