@@ -29,11 +29,11 @@
   /* Shepherd container */
   #main-character {
     position: absolute;
-    bottom: 500px;
+    bottom: 28px; /* Adjust this until his feet sit on the grass */
     left: 50%;
     transform: translateX(-50%);
-    width: 150px;
-    height: 150px;
+    width: 100px; /* Adjust size if needed */
+    height: auto;
     z-index: 10;
   }
   
@@ -45,8 +45,8 @@
   /* Sheep */
   .sheep {
     position: absolute;
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     background-image: url("src/images/sheep-left.png");
     background-size: contain;
     background-repeat: no-repeat;

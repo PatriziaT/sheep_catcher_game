@@ -58,21 +58,36 @@ function dropSheep() {
     }, 30);
   }
 
-  //stops the sheeps to dropping while leaving the screen
-  let sheepDropInterval;
+  
+  let sheepDropInterval = null;
 
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) {
-        clearInterval(sheepDropInterval);
-    } else {
-        sheepDropInterval = setInterval(dropSheep, 2000);
-    }
-  });
+// Start dropping sheep
+function startSheepInterval() {
+  if (!sheepDropInterval) {
+    sheepDropInterval = setInterval(dropSheep, 2000);
+  }
+}
 
+// Stop dropping sheep
+function stopSheepInterval() {
+  if (sheepDropInterval) {
+    clearInterval(sheepDropInterval);
+    sheepDropInterval = null;
+  }
+}
 
-// Drop a sheep every 2 seconds
-sheepDropInterval = setInterval(dropSheep, 2000);
+// Start once on load
+startSheepInterval();
 
-//Score Board
+// Pause/resume based on tab visibility
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    stopSheepInterval();
+  } else {
+    startSheepInterval();
+  }
+});
+
+// Score Board
 let score = 0;
 const scoreDisplay = document.getElementById("score");
