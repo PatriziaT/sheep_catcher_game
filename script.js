@@ -24,12 +24,16 @@ function dropSheep() {
     const shepherdRect = shepherd.getBoundingClientRect();
     const sheepWidth = 100;
   
-    // Center sheep above shepherd for test, or random:
-    sheep.style.left = Math.random() * (window.innerWidth - sheepWidth) + "px";
+    // Drop sheep in a limited horizontal zone (avoid edges)
+    const minDropX = window.innerWidth * 0.15;
+    const maxDropX = window.innerWidth * 0.85;
+    const randomX = minDropX + Math.random() * (maxDropX - minDropX);
+
+    sheep.style.left = randomX + "px";
     sheep.style.top = sheepY + "px";
   
     const dropSheeps = setInterval(() => {
-      sheepY += 3;
+      sheepY += 2;
       sheep.style.top = sheepY + "px";
   
       const sheepRect = sheep.getBoundingClientRect();
