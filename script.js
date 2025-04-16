@@ -58,8 +58,20 @@ function dropSheep() {
     }, 30);
   }
 
+  //stops the sheeps to dropping while leaving the screen
+  let sheepDropInterval;
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+        clearInterval(sheepDropInterval);
+    } else {
+        sheepDropInterval = setInterval(dropSheep, 2000);
+    }
+  });
+
+
 // Drop a sheep every 2 seconds
-setInterval(dropSheep, 2000);
+sheepDropInterval = setInterval(dropSheep, 2000);
 
 //Score Board
 let score = 0;
