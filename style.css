@@ -14,7 +14,7 @@
   .game-background {
     width: 100vw;
     height: 100vh;
-    background-image: url("src/images/caralis.png");
+    background-image: url("./src/images/caralis.png");
     background-size: cover;
     background-position: center;
     position: relative;
@@ -41,7 +41,7 @@
   /* Shepherd container */
   #main-character {
     position: absolute;
-    bottom: 205px;             
+    bottom: 190px;             
     left: 50%;
     transform: translateX(-50%);
     width: 90px;
@@ -61,7 +61,7 @@
     height: 80px;
     top: -100%;
     left: 0;
-    background-image: url("src/images/sheep-left.png");
+    background-image: url("./src/images/sheep-left.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;

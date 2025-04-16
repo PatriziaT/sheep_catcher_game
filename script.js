@@ -127,10 +127,13 @@ function playerDead() {
   document.querySelectorAll(".sheep").forEach(sheep => sheep.remove());
 
   // Immediately show Play Again button (no alert)
-  document.getElementById("play-again").style.display = "block";
+  //document.getElementById("play-again").style.display = "block";
+  gameButton.style.display = "block";
 }
 
-function showGameOverMessage(message, callback) {
+
+
+function GameOverMessage(message, callback) {
   const alertBox = document.createElement("div");
   alertBox.textContent = message;
   alertBox.className = "game-over-alert";
@@ -141,6 +144,12 @@ function showGameOverMessage(message, callback) {
     if (callback) callback();  // call this after alert is gone
   }, 3000);
 }
+const gameButton =document.getElementById("game-button");
+let gameStarted = false;
+
+gameButton.addEventListener("click", () => {
+  console.log("Game starting...");
+})
 
 // Restart Game when clicking the button
   document.getElementById("play-again").addEventListener("click", () => {
