@@ -23,13 +23,13 @@
   .game-title {
     text-align: center;
     font-size: 3rem;
-    margin-top: 100px;
+    margin-top: 50px;
   }
   
   /* Shepherd container */
   #main-character {
     position: absolute;
-    bottom: 300px;             
+    bottom: 200px;             
     left: 50%;
     transform: translateX(-50%);
     width: 90px;
