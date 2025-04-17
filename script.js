@@ -1,5 +1,9 @@
-//############## SHEPHERD ############## 
+//############## GAME ENVIORNMENT ############## 
+const gameArea = document.getElementById("game-area");
 
+
+
+//############## SHEPHERD ############## 
 const shepherd = document.querySelector("#main-character"); 
 let shepherdX = window.innerWidth / 2 - 50; // center minus half width
 
@@ -34,7 +38,7 @@ function startSheepInterval() {
 function dropSheep() {
     const sheep = document.createElement("div");
     sheep.classList.add("sheep");
-    document.body.appendChild(sheep);
+    gameArea.appendChild(sheep);
   
     let sheepY = -100;
     const shepherdRect = shepherd.getBoundingClientRect();
@@ -72,7 +76,7 @@ function dropSheep() {
         return;
       }
   
-      if (sheepY > window.innerHeight) {
+      if (sheepY > gameArea.offsetHeight) {
         clearInterval(dropSheeps);
         sheep.remove();
         missed++;
