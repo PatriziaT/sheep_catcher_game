@@ -19,7 +19,7 @@
 
   .game-title {
     text-align: center;
-    font-size: 4rem;
+    font-size: 2rem;
     margin-top: 90px;
     color: rgb(91, 55, 4)
   }
@@ -63,7 +63,7 @@
   /* Shepherd container */
   #main-character {
     position: absolute;
-    bottom: 180px;             
+    bottom: 100px;             
     left: 45%;
     transform: translateX(-50%);
     width: 90px;
