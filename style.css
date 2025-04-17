@@ -30,7 +30,7 @@
     height: 70vh;
     max-height: 1000px;
     position: relative;
-    margin: 2rem auto;
+    margin: -3rem auto 2 rem auto;
     background-image: url("src/images/caralis.png");
     background-size: cover;
     background-position: center;
@@ -109,14 +109,14 @@
  
   .startBtn {
     position: absolute;  
-    top: 80px; /* adjust as needed */
+    top: 50px; /* adjust as needed */
     left: 50%;
     transform: translateX(-50%);
       background-color: rgb(224, 115, 13);
       border: none;
       color: white;
       padding: 14px 40px;
-      font-size: 40px;
+      font-size: 30px;
       border-radius: 8px;
       transition-duration: 0.4s;
     }
@@ -160,4 +160,3 @@
     }
   }
 
-  
