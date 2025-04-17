@@ -10,26 +10,28 @@
 </head>
 
  <!--Main game area -->
-<body class="game-background">
-        <div>
-            <h1 class="game-title">Ajo! Let's catch some Sheeps!</h1>
+<body>
+    <div id="game-container">
+    <h1 class="game-title">Ajo! Let's catch some Sheeps!</h1>
+    <div class="game-background">
+        <div id="game-area">
             <button id="game-button" class="startBtn">Start Game</button>
+               <!-- Main Character - Sheperd -->
+            <div id="main-character">
+                <img src="./src/images/shepard-right.png" alt="Main Character Sheperd" class="sheperd-right">
+            </div>
+              <!--Score Board -->
+            <div id="score-board">
+                Caught: <span id="score">0</span>
+                <br>
+                Missed: <span id="missed">0</span>
+            </div>
         </div>
-        <!-- Main Character - Sheperd -->
-        <div id="main-character">
-            <img src="./src/images/shepard-right.png" alt="Main Character Sheperd" class="sheperd-right">
-        </div>
-
+    </div>
+</div>
       
      <!-- Link to your JS file -->
-    <div id="score-board">
-        Caught: <span id="score">0</span>
-        <br>
-        Missed: <span id="missed">0</span>
-    </div>
-    
     <script src="script.js"></script>
-  
 
 </body>
 
