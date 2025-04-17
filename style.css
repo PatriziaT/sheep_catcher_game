@@ -26,14 +26,16 @@
 
   #game-area {
     width: 90vw;
+    max-width: 3000px;
     height: 70vh;
+    max-height: 1000px;
     position: relative;
     margin: -280px auto 0 auto;
     background-image: url("src/images/caralis.png");
     background-size: cover;
     background-position: center;
     border: 8px solid rgb(224, 115, 13);
-    border-radius: 12px;
+    border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
   }
@@ -63,7 +65,7 @@
   /* Shepherd container */
   #main-character {
     position: absolute;
-    bottom: 100px;             
+    bottom: 80px;             
     left: 45%;
     transform: translateX(-50%);
     width: 90px;
