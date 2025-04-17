@@ -82,8 +82,8 @@
     filter: grayscale(100%);
     opacity: 0.6;
   }
-  .button-play-again {
-      display: none;   /* now hidden by default / block for center only*/
+  .startBtn {
+      display: block;   /* now hidden by default / block for center only*/
       margin: 100px auto; /* centers the button horizontally */
       background-color: rgb(224, 115, 13);
       border: none;
@@ -94,7 +94,7 @@
       transition-duration: 0.4s;
     }
   
-  .button-play-again:hover {
+  .startBtn:hover {
     background-color: rgb(188, 132, 202);
     color: white;
   }

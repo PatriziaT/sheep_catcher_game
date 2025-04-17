@@ -22,7 +22,6 @@ function moveShepherd(e) {
 
 let activeSheepInterval = [];
 let sheepDropInterval = null;
-startSheepInterval();
 
 // Start dropping sheep
 function startSheepInterval() {
@@ -88,7 +87,6 @@ function dropSheep() {
   }
 
 //############## STOP DROPPING SHEEPS  ############## 
- 
 
 // Stop dropping sheep
 function stopSheepInterval() {
@@ -105,7 +103,7 @@ document.addEventListener("visibilitychange", () => {
   if (document.hidden) {
     stopSheepInterval();
   } else {
-    startSheepInterval();
+    if (gameStarted) startSheepInterval();
   }
 });
 
@@ -125,12 +123,10 @@ function playerDead() {
   document.removeEventListener("keydown", moveShepherd);
   shepherd.classList.add("shepherd-dead");
 
-  // Remove all sheeps
-  document.querySelectorAll(".sheep").forEach(sheep => sheep.remove());
+  document.querySelectorAll(".sheep").forEach(sheep => sheep.remove());  // Remove all sheeps
 
-  // Immediately show Play Again button (no alert)
-  //document.getElementById("play-again").style.display = "block";
-  gameButton.style.display = "block";
+  gameButton.style.display = "block"; //when player dies, makes button reappear
+  gameButton.textContent = "Play Again"; //changes btn label 
 }
 
 function GameOverMessage(message, callback) {
@@ -144,35 +140,29 @@ function GameOverMessage(message, callback) {
     if (callback) callback();  // call this after alert is gone
   }, 3000);
 }
-const gameButton =document.getElementById("game-button");
+
+const gameButton = document.getElementById("game-button");
 let gameStarted = false;
 
 gameButton.addEventListener("click", () => {
-  console.log("Game starting...");
-})
+  if (!gameStarted) {
+    console.log("Game starting...");
+    gameStarted = true;
+  } else {
+    console.log("Restarting game...");
+  }
 
-// Restart Game when clicking the button
-  document.getElementById("play-again").addEventListener("click", () => {
-  console.log("restarting....");
-
-  // Reset score and missed
+  // Reset everything
   score = 0;
   missed = 0;
   scoreDisplay.textContent = score;
   missedDisplay.textContent = missed;
 
-  // Remove shepherd-dead styles
-  shepherd.classList.remove("shepherd-dead");
+  shepherd.classList.remove("shepherd-dead");  // Remove shepherd-dead styles
+  gameButton.style.display = "none";  // Hide button
+  document.addEventListener("keydown", moveShepherd); // Re-enable movement
+  document.querySelectorAll(".sheep").forEach(sheep => sheep.remove());   // Remove left-over sheeps on screen
+  startSheepInterval();   // Start sheep dropping again
+  dropSheep(); //drops sheeps instantly after btn click
 
-  // Hide play again button
-  document.getElementById("play-again").style.display = "none";
-
-  // Re-enable movement
-  document.addEventListener("keydown", moveShepherd);
-
-  // Remove left-over sheeps on screen
-  document.querySelectorAll(".sheep").forEach(sheep => sheep.remove());
-
-  // Start sheep dropping again
-  startSheepInterval();
 });
