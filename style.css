@@ -41,7 +41,7 @@
   /* Shepherd container */
   #main-character {
     position: absolute;
-    bottom: 190px;             
+    bottom: 185px;             
     left: 50%;
     transform: translateX(-50%);
     width: 90px;

@@ -78,6 +78,7 @@ function dropSheep() {
         sheep.remove();
         missed++;
         console.log("Sheep missed!");
+        missedDisplay.textContent = missed;
 
         if(missed >= 5) {
             playerDead(); //Call your "kill" logic
@@ -114,6 +115,7 @@ document.addEventListener("visibilitychange", () => {
 let score = 0;
 let missed = 0;
 const scoreDisplay = document.getElementById("score");
+const missedDisplay = document.getElementById("missed");
 
 //############## GAME OVER ############## 
 
@@ -130,8 +132,6 @@ function playerDead() {
   //document.getElementById("play-again").style.display = "block";
   gameButton.style.display = "block";
 }
-
-
 
 function GameOverMessage(message, callback) {
   const alertBox = document.createElement("div");
@@ -159,6 +159,7 @@ gameButton.addEventListener("click", () => {
   score = 0;
   missed = 0;
   scoreDisplay.textContent = score;
+  missedDisplay.textContent = missed;
 
   // Remove shepherd-dead styles
   shepherd.classList.remove("shepherd-dead");
