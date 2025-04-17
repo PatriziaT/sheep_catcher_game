@@ -64,9 +64,9 @@
   }
   .game-instructions {
     text-align: center;
-    font-size: 0.5rem;
+    font-size: 0.7rem;
     color: rgb(91, 55, 4);
-    margin-top: 0.5rem;
+    margin-top: 0;
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
