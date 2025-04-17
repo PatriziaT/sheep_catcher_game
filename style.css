@@ -20,7 +20,7 @@
   .game-title {
     text-align: center;
     font-size: 2rem;
-    margin-top: 90px;
+    margin-top: 50px;
     color: rgb(91, 55, 4)
   }
 
@@ -65,7 +65,7 @@
   /* Shepherd container */
   #main-character {
     position: absolute;
-    bottom: 80px;             
+    bottom: 65px;             
     left: 45%;
     transform: translateX(-50%);
     width: 90px;
@@ -108,8 +108,10 @@
   }
  
   .startBtn {
-      display: block;   /* now hidden by default / block for center only*/
-      margin: 150px auto; /* centers the button horizontally */
+    position: absolute;  
+    top: 80px; /* adjust as needed */
+    left: 50%;
+    transform: translateX(-50%);
       background-color: rgb(224, 115, 13);
       border: none;
       color: white;
@@ -120,6 +122,6 @@
     }
   
   .startBtn:hover {
-    background-color: rgb(188, 132, 202);
+    background-color: rgb(127, 80, 139);
     color: white;
   }
