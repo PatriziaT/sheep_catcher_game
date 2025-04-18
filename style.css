@@ -83,7 +83,9 @@
     height: auto;
     z-index: 10;
   }
-  
+  .hidden {
+    display: none;
+  }
   #main-character img {
     width: 100%;
     height: auto;
